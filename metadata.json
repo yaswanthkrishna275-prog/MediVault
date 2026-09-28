@@ -1,0 +1,7 @@
+{
+  "name": "MediVault — Healthcare Assistance Platform",
+  "description": "AI-powered personal healthcare assistance platform with secure document vault, clinical symptom guidance, prescription explanation, health timeline, and encrypted record sharing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

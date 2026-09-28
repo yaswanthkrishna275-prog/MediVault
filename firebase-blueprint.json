@@ -1,0 +1,121 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Patient user profile and emergency medical information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "dateOfBirth": { "type": "string" },
+        "bloodGroup": { "type": "string" },
+        "city": { "type": "string" },
+        "country": { "type": "string" }
+      },
+      "required": ["uid", "email"]
+    },
+    "MedicalDocument": {
+      "title": "MedicalDocument",
+      "description": "Uploaded patient medical records, lab reports, and prescriptions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "date": { "type": "string" },
+        "doctorName": { "type": "string" },
+        "facilityName": { "type": "string" },
+        "fileUrl": { "type": "string" },
+        "fileName": { "type": "string" },
+        "isExtracted": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "category"]
+    },
+    "Medication": {
+      "title": "Medication",
+      "description": "Patient active medications and dosages",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "dosage": { "type": "string" },
+        "frequency": { "type": "string" },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "name", "dosage", "frequency"]
+    },
+    "SymptomAssessment": {
+      "title": "SymptomAssessment",
+      "description": "Clinical guidance session log evaluated via Gemini",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "symptomsInput": { "type": "string" },
+        "suggestedSpecialty": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "symptomsInput"]
+    },
+    "TimelineEvent": {
+      "title": "TimelineEvent",
+      "description": "Chronological patient health milestone event",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "eventType": { "type": "string" },
+        "date": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "eventType", "date"]
+    },
+    "SharedRecord": {
+      "title": "SharedRecord",
+      "description": "Temporary encrypted medical record share package for physicians",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "shareTitle": { "type": "string" },
+        "accessCode": { "type": "string" },
+        "expiresAt": { "type": "string" },
+        "isRevoked": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "shareTitle", "accessCode", "expiresAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles"
+    },
+    "/medicalDocuments/{docId}": {
+      "schema": "MedicalDocument",
+      "description": "Medical vault documents"
+    },
+    "/medications/{medId}": {
+      "schema": "Medication",
+      "description": "Active prescription medications"
+    },
+    "/symptomAssessments/{assessmentId}": {
+      "schema": "SymptomAssessment",
+      "description": "Symptom assessments"
+    },
+    "/timelineEvents/{eventId}": {
+      "schema": "TimelineEvent",
+      "description": "Health timeline milestones"
+    },
+    "/sharedRecords/{shareId}": {
+      "schema": "SharedRecord",
+      "description": "Shared record packages"
+    }
+  }
+}
